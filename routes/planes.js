@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getPlanes, createPlane } = require("../controllers/planes");
+const { getPlanes, createPlane, getPlane } = require("../controllers/planes");
 const path = require("path");
 const multer = require("multer");
 
@@ -23,7 +23,7 @@ router.get("/", getPlanes);
 
 // @route GET /.api/planes/:id
 // @des получить самолет по id
-router.get("/:id", (req, res) => res.send("Get single plane"));
+router.get("/:id", getPlane);
 
 // @route POST /.api/planes
 // @des создать самолет

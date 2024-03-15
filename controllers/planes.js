@@ -1,6 +1,7 @@
 const Plane = require("../modals/plane");
 const router = require("../routes/planes");
 
+// Получить все самолеты
 const getPlanes = async (req, res) => {
     try {
         const planes = await Plane.find();
@@ -13,6 +14,19 @@ const getPlanes = async (req, res) => {
     }
 };
 
+const getPlane = async (req, res) => {
+    try {
+        const plane = await Plane.find({ _id: req.params.id });
+
+        res.status(200).json(plane);
+    } catch (error) {
+        res.status(400).json({
+            message: "Самолет не найден",
+        });
+    }
+};
+
+// Создать самолет
 const createPlane = async (req, res) => {
     const errors = {};
 
@@ -70,4 +84,5 @@ const createPlane = async (req, res) => {
 module.exports = {
     getPlanes,
     createPlane,
+    getPlane,
 };
